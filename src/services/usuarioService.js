@@ -1,12 +1,15 @@
 //! aqui onde o cerebro de cada operação funciona os services 
 //! nossos services de usuarios deve poder cadastrar, logar, deletar a propria conta, conversar com a IA
 
-
-
-import bcrypt from "bcrypt" //? importação do bcrypt biblioteca para criptografar senhas
+import { buscarUsuarioPorEmail } from "../models/usuarioModel.js";
+import bcrypt from "bcryptjs"; //? importação do bcrypt biblioteca para criptografar senhas
+import jwt from "jsonwebtoken";
 import {adicionarUsuario} from "../models/usuarioModel.js"
+import 'dotenv/config';
 
 
+
+//!CADASTRO
 const cadastrarUsuarioService = async (dadosUsuario) => {
 
     const { nome, email, senha, tema} = dadosUsuario;
@@ -43,4 +46,36 @@ const cadastrarUsuarioService = async (dadosUsuario) => {
 
 }
 
-export {cadastrarUsuarioService} //? exporta esse arquivo atual para o controller poder acessar
+
+//!LOGIN
+
+const loginUsuarioService = async (dadosLogin) => {
+   
+        const usuarioEncontrado = await buscarUsuarioPorEmail(dadosLogin.email)
+        
+        if(!usuarioEncontrado){
+            throw new Error("email ou senha invalida")
+        }
+
+        const comparaSenha = await bcrypt.compare(dadosLogin.senha, usuarioEncontrado.senha)
+
+        if(!comparaSenha){
+            throw new Error("email ou senha invalidos")
+        }
+
+        const JWT_SECRET = process.env.JWT_SECRET //? meu secret
+
+        const token = jwt.sign({ id: usuarioEncontrado.id, email: usuarioEncontrado.email }, JWT_SECRET, {expiresIn: "1m"})
+        
+        return {
+        mensagem: "Login realizado com sucesso",
+        token: token,
+        usuario: {
+        id: usuarioEncontrado.id,
+        nome: usuarioEncontrado.nome,
+        email: usuarioEncontrado.email
+        }}
+}
+
+
+export {cadastrarUsuarioService, loginUsuarioService} //? exporta esse arquivo atual para o controller poder acessar

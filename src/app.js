@@ -10,6 +10,6 @@ app.use(cors())
 app.use(express.json()) //? para o express poder ler os json (body params)
 
 
-app.use("/iara", usuarioRoutes) //? definindo como padrão o uso do endpoint "iara" antes de chamar qualquer rota de usuario
+app.use("/iara", usuarioRoutes) //? aqui eu defino como padrão o uso do endpoint "iara" antes de chamar qualquer rota de usuario
 
 export default app

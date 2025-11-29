@@ -1,10 +1,14 @@
-import { cadastrarUsuarioService } from "../services/usuarioService.js";
+import { cadastrarUsuarioService, loginUsuarioService } from "../services/usuarioService.js";
+
+
 
 /**
  * @param {import('express').Request} req
  * @param {import('express').Response} res
  */
 
+
+//!CADASTRO
 const cadastrarUsuarioController = async (req, res) => { //? req = request / res = response
 
     try {
@@ -18,4 +22,20 @@ const cadastrarUsuarioController = async (req, res) => { //? req = request / res
   
 }
 
-export {cadastrarUsuarioController};
+const loginUsuarioController = async (req, res) => {
+    try {
+        const dados = req.body
+        const resultado = await loginUsuarioService(dados)
+
+        res.status(200).json(resultado)
+        
+    } catch (error) {
+        res.status(400).json({ erro: error.message });
+    }
+    
+}
+
+
+
+
+export {cadastrarUsuarioController, loginUsuarioController};

@@ -78,4 +78,49 @@ const loginUsuarioService = async (dadosLogin) => {
 }
 
 
-export {cadastrarUsuarioService, loginUsuarioService} //? exporta esse arquivo atual para o controller poder acessar
+//! Editar usuário
+
+const editarUsuarioService = async (idUsuario, novosDados) => {  //? Objeto para armazenar apenas os dados válidos para atualização
+
+    const dadosParaAtualizar = {};
+
+    if (novosDados.senha) {
+        if (novosDados.senha.length < 6) {
+            throw new Error ("A nova senha deve ter pelo menos 6 digitos!"); 
+        }
+        const salt = await bcrypt.genSalt(10);
+        dadosParaAtualizar.senha = await bcrypt.hash(novosDados.senha, salt);
+    }
+    
+    if (novosDados.nome) {
+        dadosParaAtualizar.nome = novosDados.nome; 
+    }
+
+    if (novosDados.email) {
+        dadosParaAtualizar.email = novosDados.email;
+    }
+
+    if (novosDados.temaDeInteresse) {
+        dadosParaAtualizar.temaDeInteresse = novosDados.temaDeInteresse;
+    }
+
+    if (Object.keys(dadosParaAtualizar).length === 0) {
+        throw new Error ("Nenhum dado válido para atualizar.");
+    }
+
+    const resultado = await atualizarUsuario(idUsuario, dadosParaAtualizar);
+
+    return resultado;
+}
+
+//! Deletar 
+
+const deletarUsuarioService = async (idUsuario) => {
+
+    const resultado = await deletarUsuario(idUsuario);
+
+    return resultado;
+};
+
+export {cadastrarUsuarioService, loginUsuarioService, editarUsuarioService, deletarUsuarioService} //? exporta esse arquivo atual para o controller poder acessar
+

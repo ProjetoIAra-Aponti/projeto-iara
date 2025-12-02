@@ -52,7 +52,41 @@ const buscarUsuarioPorEmail = async (email) => {
 }
 
 
-export {adicionarUsuario, buscarUsuarioPorEmail};
+//! Atualizar/Editar cadastro usuário
+
+const atualizarUsuario = async (idUsuario, dadosAtualizados) => {
+    try {
+        const usuarioRef = db.collection('usuarios').doc(idUsuario);
+
+        await usuarioRef.update(dadosAtualizados);
+
+        return {message: 'Usuário atualizado com sucesso.'};
+    } catch (error) {
+        console.log("Erro ao atualizar usuário no FireStore:", error);
+        throw new Error ('Falha ao atualizar usuário!');
+    }
+};
+
+//! Deletar Usuário
+
+const deletarUsuario = async (idUsuario) => {
+    try {
+        const usuarioRef = db.collection('usuarios').doc(idUsuario);
+
+        await usuarioRef.delete();
+
+        return {message: 'Usuário deletado com sucesso!'};
+    } catch (error) {
+        console.log("Erro ao deletar usuário no Firestore:", error);
+        throw new Error ('Falha ao deletar usuário');
+    }
+};
+
+
+
+
+
+export {adicionarUsuario, buscarUsuarioPorEmail, atualizarUsuario, deletarUsuario}; 
 
 
 

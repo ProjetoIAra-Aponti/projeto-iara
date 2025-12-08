@@ -1,4 +1,4 @@
-import { cadastrarUsuarioService, loginUsuarioService } from "../services/usuarioService.js";
+import { cadastrarUsuarioService, loginUsuarioService, editarUsuarioService, deletarUsuarioService} from "../services/usuarioService.js";
 
 
 
@@ -35,7 +35,37 @@ const loginUsuarioController = async (req, res) => {
     
 }
 
+//! Editar usuário
+
+const editarUsuarioController = async(req, res) => {
+    try {
+        const novosDados = req.body;
+
+        const idUsuarioAutenticado = req.userId;
+
+        const resultado = await editarUsuarioService(idUsuarioAutenticado, novosDados);
+
+        res.status(200).json("Conta deletada com sucesso", resultado);
+    } catch (error) {
+        res.status(400).json({error: error.message}); 
+    }
+}
+
+//! Deletar usuário
+
+const deletarUsuarioController = async (req, res) => {
+    try {
+        const idUsuarioAutenticado = req.userId;
+
+        const resultado = await deletarUsuarioService(idUsuarioAutenticado);
+
+        res.status(200).json(resultado);
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+};
 
 
 
-export {cadastrarUsuarioController, loginUsuarioController};
+
+export {cadastrarUsuarioController, loginUsuarioController, editarUsuarioController, deletarUsuarioController};

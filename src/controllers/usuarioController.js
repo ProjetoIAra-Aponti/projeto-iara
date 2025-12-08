@@ -45,7 +45,7 @@ const editarUsuarioController = async(req, res) => {
 
         const resultado = await editarUsuarioService(idUsuarioAutenticado, novosDados);
 
-        res.status(200).json("Conta deletada com sucesso", resultado);
+        res.status(200).json("dados atualizados com sucesso", resultado);
     } catch (error) {
         res.status(400).json({error: error.message}); 
     }

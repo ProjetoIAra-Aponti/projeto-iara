@@ -1,7 +1,7 @@
 //! aqui onde o cerebro de cada operação funciona os services 
 //! nossos services de usuarios deve poder cadastrar, logar, deletar a propria conta, conversar com a IA
 
-import { buscarUsuarioPorEmail } from "../models/usuarioModel.js";
+import { buscarUsuarioPorEmail, deletarUsuario, atualizarUsuario} from "../models/usuarioModel.js";
 import bcrypt from "bcryptjs"; //? importação do bcrypt biblioteca para criptografar senhas
 import jwt from "jsonwebtoken";
 import {adicionarUsuario} from "../models/usuarioModel.js"
@@ -65,7 +65,7 @@ const loginUsuarioService = async (dadosLogin) => {
 
         const JWT_SECRET = process.env.JWT_SECRET //? meu secret
 
-        const token = jwt.sign({ id: usuarioEncontrado.id, email: usuarioEncontrado.email }, JWT_SECRET, {expiresIn: "1m"})
+        const token = jwt.sign({ id: usuarioEncontrado.id, email: usuarioEncontrado.email }, JWT_SECRET, {expiresIn: "1h"})
         
         return {
         mensagem: "Login realizado com sucesso",

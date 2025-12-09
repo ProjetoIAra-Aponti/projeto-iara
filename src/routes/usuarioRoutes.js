@@ -6,7 +6,7 @@ import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.post("/cadastro", cadastrarUsuarioController); //? criação de um endpoint para a funcionalidade de cadastro
+router.post("/cadastro", cadastrarUsuarioController); //? criação de um endpoint para a funcionalidade de cadastro 
 router.post("/login", loginUsuarioController)
 router.put('/editar', authMiddleware, editarUsuarioController);
 router.delete('/deletar', authMiddleware, deletarUsuarioController);

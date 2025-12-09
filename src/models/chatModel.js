@@ -21,7 +21,7 @@ export const salvarHistorico = async (idUsuario, texto, quemEnviou) => {
 
 export const buscarHistorico = async (idUsuario) => {
     try {
-        const historicoDocRef = db.collection('usuarios').doc(idUsuario).collection('historico').orderBy('dataCriacao', 'asc'); 
+        const historicoDocRef = db.collection('usuarios').doc(idUsuario).collection('historico').orderBy('dataEnvio', 'asc'); 
         const snapshot = await historicoDocRef.get();
         
         const historico = [];

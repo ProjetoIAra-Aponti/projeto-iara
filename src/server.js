@@ -1,6 +1,7 @@
 //! essa pasta é o nosso motor de ignição ela é responsavel apenas por ligar o nosso servifor e fazer tudo rodar
 
 import app from './app.js';
+import 'dotenv/config';
 
 const PORT = 3000;
 

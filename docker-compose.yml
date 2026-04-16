@@ -1,6 +1,8 @@
 services:
   backend:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.backend # Garanta que o nome do arquivo de build do back seja este
     container_name: iara-backend
     restart: always
     ports:
@@ -15,8 +17,10 @@ services:
       - ollama
     networks:
       - iara-network
+    # ESTE É O AJUSTE PRINCIPAL:
+    volumes:
+      - ./chaveJsonFirebaseFirestore.json:/app/chaveJsonFirebaseFirestore.json
 
-  
   frontend:
     build:
       context: .
@@ -28,7 +32,6 @@ services:
     networks:
       - iara-network
 
-  
   ollama:
     image: ollama/ollama:latest
     container_name: iara-ollama

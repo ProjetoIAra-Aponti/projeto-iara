@@ -1,5 +1,4 @@
-import {db} from '../config/firebase.js'
-import { admin } from '../config/firebase.js'
+import { admin, db } from '../config/firebase.js';
 
 export const salvarHistorico = async (idUsuario, texto, quemEnviou) => {
     try {

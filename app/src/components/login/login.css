@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Quicksand:wght@300..700&display=swap');
 
-
+/* --- CONTAINER PRINCIPAL --- */
 .loginContainer {
   position: fixed;
   top: 0;
@@ -8,90 +8,146 @@
   width: 100vw;
   height: 100vh;
   background-color: #420583;
-  
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* No Desktop mantemos o espalhamento */
   justify-content: space-between; 
   padding: 15px 0;
-  overflow: hidden;
+  overflow: hidden; /* Corta qualquer sobra fantasma */
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+/* --- Ajuste Mobile para o Container (O segredo para a margem sumir) --- */
+@media (max-width: 768px) {
+  .loginContainer {
+    /* Mudamos para flex-start para os elementos não tentarem ocupar o fundo */
+    justify-content: flex-start !important; 
+    /* Garante que o container não cresça além da visão do celular */
+    max-height: 100vh !important; 
+    padding-top: 50px; /* Dá um respiro no topo */
+  }
 }
 
+.loginContainer.fade-in { opacity: 1; }
 
+/* --- TÍTULOS --- */
 .titulosLogin {
   text-align: center;
-  margin-top: 10px;
-  flex-shrink: 0;
+  margin-top: 20px;
   z-index: 10;
-  margin-bottom: -110px;
 }
 
 .titleolaLogin, .titlebemvindoLogin, .titleiaraLogin {
   font-family: 'Quicksand', sans-serif;
+  text-align: center;
   color: aqua;
   margin: 0;
   line-height: 1.1;
 }
 
-.titleolaLogin { font-size: 2.2rem; font-weight: 300; }
-.titlebemvindoLogin { font-size: 1.8rem; font-weight: 300; }
-.titleiaraLogin { font-size: 1.8rem; font-weight: 700; }
-#aIARA { font-weight: 300; font-style: normal; margin-right: 5px; }
+.titleolaLogin { font-size: 2.5rem; font-weight: 300; }
+.titlebemvindoLogin { font-size: 2rem; font-weight: 300; }
+.titleiaraLogin { font-size: 2rem; font-weight: 700; }
 
-
-.logoiara {
-  height: 60vh; 
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.3));
-  flex-shrink: 0; 
-  min-height: 300px; 
-  z-index: 5;
-  margin-bottom: -70px;
+/* --- Ajuste Mobile para Títulos --- */
+@media (max-width: 768px) {
+  .titleolaLogin, .titlebemvindoLogin, .titleiaraLogin { 
+    font-size: 1.5rem !important; 
+    transform: translateY(-3.5rem); 
+  }
 }
 
+/* --- LOGO IARA --- */
+.logoiara {
+  width: 25%;
+  height: auto;
+  transform: translateY(-14.8em);  
+  object-fit: contain;
+  filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.3));
+  z-index: 5;
+  margin: 10px 0;
+}
 
+/* --- Ajuste Mobile para Logo --- */
+@media (max-width: 768px) {
+  .logoiara {
+    width: 85% !important;
+    max-width: 280px;
+    transform: translateY(-12rem); 
+  }
+}
+
+/* --- FORMULÁRIO E INPUTS --- */
 .formLogin {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -20;
-  width: 85%;
-  max-width: 350px;
+  width: 100%;
+  transform: translateY(-29rem);
+  max-width: 380px;
   z-index: 10;
+  padding: 0 20px;
 }
-
 
 .inputLogin, .inputPassword {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;
+  padding: 15px;
+  margin-bottom: 12px;
   border-radius: 30px;
   border: none;
   font-family: 'Quicksand', sans-serif;
   font-size: 1rem;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
   outline: none;
-  
- 
-  background-color: white !important;
+  background-color: rgb(253, 251, 251) !important;
   color: black !important;
-  color-scheme: light; 
+}
+/* Isso remove o fundo roxo/azul do preenchimento automático */
+.inputLogin:-webkit-autofill,
+.inputLogin:-webkit-autofill:hover, 
+.inputLogin:-webkit-autofill:focus,
+.inputPassword:-webkit-autofill,
+.inputPassword:-webkit-autofill:hover, 
+.inputPassword:-webkit-autofill:focus {
+  /* A mágica: cria um preenchimento de sombra interna branca */
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
+/* Garante que o fundo continue branco ao clicar ou digitar */
+.inputLogin:focus, .inputPassword:focus {
+  background-color: white !important;
+}
+/* --- Ajuste Mobile para Formulário --- */
+@media (max-width: 768px) {
+  .formLogin {
+    width: 90% !important;
+    max-width: 320px;
+    transform: translateY(-20rem);
+  }
+  .inputLogin, .inputPassword {
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 8px !important;
+  }
+}
+
+/* --- BOTÃO --- */
 .btnLogin {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background-color: #e25300;
   border-radius: 30px;
-  color: #380075;
+  color: #f4f4f5;
   font-weight: bold;
   font-size: 1.1rem;
   border: none;
   cursor: pointer;
   font-family: 'Quicksand', sans-serif;
-  margin-top: 5px;
-  transition: transform 0.2s;
+  transition: transform 0.2s, background-color 0.2s;
+  font-weight: 500;
 }
 
 .btnLogin:hover {
@@ -99,39 +155,52 @@
   transform: scale(1.02);
 }
 
+/* --- Ajuste Mobile para Botão --- */
+@media (max-width: 768px) {
+  .btnLogin {
+    padding: 12px !important;
+    color: white !important; /* No mobile você queria branco */
+    margin-top: 5px;
+  }
+}
 
+/* --- LINK CADASTRO --- */
 .linkCadastro {
-  margin-top: 10px;
   color: white;
-  margin-top: 25px;
+  margin-top: 20px;
   font-family: 'Quicksand', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .spanCadastro { color: aqua; font-weight: bold; cursor: pointer; }
 
-
-.anjosDigitais {
-  height: 40px;
-  width: auto;
-  margin-top: -40px;
-  margin-bottom: 15px;
-  opacity: 0.8;
-  flex-shrink: 0;
+/* --- Ajuste Mobile para Link --- */
+@media (max-width: 768px) {
+  .linkCadastro {
+    transform: translateY(-0.9rem);
+    font-size: 0.9rem !important;
+  }
 }
 
-
-.loginContainer { opacity: 0; transition: opacity 0.8s; }
-.loginContainer.fade-in { opacity: 1; }
-
-@media (max-height: 700px) {
- 
-  .titleolaLogin { font-size: 1.8rem; }
-  .titlebemvindoLogin { font-size: 1.5rem; }
-  .titleiaraLogin { font-size: 1.5rem; }
+/* --- RODAPÉ ANJOS --- */
+.anjosDigitais {
   
-  .logoiara {
-     height: 35vh; 
-     min-height: 200px;
+  width: 11%;
+  height: auto;
+  opacity: 0.8;
+  margin-top: 12px;
+  transform: translateY(-30rem);
+}
+
+/* --- Ajuste Mobile para Rodapé --- */
+@media (max-width: 768px) {
+  .anjosDigitais {
+    width: 45% !important;
+    height: auto !important;
+    /* Reduzi um pouco o translateY para ele subir, mas não deixar sobra embaixo */
+    transform: translateY(-22rem); 
+    opacity: 0.7;
+    /* Remove qualquer margem que force o scroll */
+    margin-bottom: 0 !important; 
   }
 }

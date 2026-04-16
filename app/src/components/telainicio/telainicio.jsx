@@ -5,23 +5,25 @@ import { useState } from 'react';
 function Telainicio() {
   const navigate = useNavigate();
   const [comecando, setComecando] = useState(false);
-  const [saindo, setSaindo] = useState(false); // 👈 controla animação
+  const [saindo, setSaindo] = useState(false);
 
   function irParaLogin() {
     setComecando(true);
-    setSaindo(true); // inicia fade-out
+    setSaindo(true);
 
     setTimeout(() => {
       navigate('/login');
-    }, 1000); // tempo da animação
+    }, 1000);
   }
 
   return (
-    <div className={`indexContainer ${saindo ? 'fade-out' : ''}`}>
+    /* Adicionamos a classe 'flex-center' para garantir centralização total */
+    <div className={`indexContainer ${saindo ? 'fade-out' : ''} flex-center`}>
       <div className="conteudoindex">
 
         <h1 className="tituloindex">IAra</h1>
 
+        {/* Removi estilos inline ou posições fixas agressivas daqui */}
         <img src="/img/iara.png" alt="logoiara" className="logoiaraindex" />
 
         <button

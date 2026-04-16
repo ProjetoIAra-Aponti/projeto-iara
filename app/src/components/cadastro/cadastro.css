@@ -1,18 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Quicksand:wght@300..700&display=swap');
 
+/* --- CONTAINER PRINCIPAL --- */
 .cadastroContainer {
   position: fixed; 
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between; 
   padding: 10px 0;
-  
   background-color: #420583;
   z-index: 999; 
   overflow: hidden; 
@@ -22,36 +21,74 @@
 
 @keyframes fadeIn { to { opacity: 1; } }
 
-
-.titulosCadastro {
-    text-align: center;
-    margin-top: 2px;
-    flex-shrink: 0;
-    margin-bottom: -100px ;
+/* --- Ajuste Mobile para Container --- */
+@media (max-width: 768px) {
+  .cadastroContainer {
+    justify-content: flex-start !important;
+    padding-top: 30px;
+    max-height: 100vh !important;
+  }
 }
 
-.titleCrie { font-family: "Quicksand", sans-serif; font-size: 2.5em; color: aqua; margin: 0; font-weight: 300; line-height: 1.1; }
-.titleSuaConta { font-family: "Quicksand", sans-serif; font-size: 2em; color: aqua; margin: 0; font-weight: 300; line-height: 1.1; }
-.titleiaraCadastro { font-family: "Quicksand", sans-serif; color: aqua; font-size: 2em; margin: 0; font-weight: 800; }
+/* --- TÍTULOS --- */
+.titulosCadastro {
+  text-align: center;
+  margin-top: 10px;
+  z-index: 10;
+}
+
+.titleCrie, .titleSuaConta, .titleiaraCadastro { 
+  font-family: "Quicksand", sans-serif; 
+  color: aqua; 
+  margin: 0; 
+  line-height: 1.1; 
+}
+
+.titleCrie { font-size: 2.5em; font-weight: 300; }
+.titleSuaConta { font-size: 2em; font-weight: 300; }
+.titleiaraCadastro { font-size: 2em; font-weight: 800; }
 #aIARACadastro { font-weight: 300; font-style: normal; margin-right: 8px; }
 
-
-.logoiaraCadastro {
-  height: 65vh; 
-  width: auto;
-  filter: drop-shadow(0px 0px 15px rgba(0,0,0,0.3));
-  flex-shrink: 0;
-  min-height: 250px;
+/* --- Ajuste Mobile para Títulos --- */
+@media (max-width: 768px) {
+  .titleCrie { font-size: 1.4em !important; transform: translateY(-2rem); }
+  .titleSuaConta { font-size: 1.3em !important; transform: translateY(-2rem); }
+  .titleiaraCadastro { font-size: 1.3em !important; transform: translateY(-2rem); }
 }
 
+/* --- LOGO IARA --- */
+.logoiaraCadastro {
+  
+  width: 30rem;
+  height: auto;
+  filter: drop-shadow(0px 0px 15px rgba(0,0,0,0.3));
+  object-fit: contain;
+  z-index: 5;
+  margin: 10px 0;
+  /* Subindo no Desktop para compensar o formulário */
+  transform: translateY(-15rem);
+}
 
+/* --- Ajuste Mobile para Logo --- */
+@media (max-width: 768px) {
+  .logoiaraCadastro {
+    height:90% !important;
+    width: 90% !important;
+    
+    transform: translateY(-12rem); /* Sobe mais no mobile */
+  }
+}
+
+/* --- FORMULÁRIO E INPUTS --- */
 .formCadastro {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 85%;
+  width: 100%;
   max-width: 350px;
-  margin-top: -100px;
+  z-index: 10;
+  padding: 0 20px;
+  transform: translateY(-29.5rem); /* Ajuste de posição Desktop */
 }
 
 .inputCadastro {
@@ -66,9 +103,27 @@
   outline: none;
   background-color: white !important; 
   color: black !important;
-  color-scheme: light;
 }
 
+/* Proteção contra Autofill Roxo */
+.inputCadastro:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+}
+
+/* --- Ajuste Mobile para Formulário --- */
+@media (max-width: 768px) {
+  .formCadastro {
+    width: 90% !important;
+    transform: translateY(-22rem); /* Encaixa logo abaixo da logo no mobile */
+  }
+  .inputCadastro {
+    padding: 10px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* --- BOTÃO --- */
 .btnCadastro {
   width: 100%;
   padding: 12px;
@@ -76,29 +131,57 @@
   background-color: #e25300;
   border-radius: 35px;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 500;
   font-family: 'Quicksand', sans-serif;
-  color: black;
+  color: #fcfcfc; /* Mantendo o padrão de contraste escuro no botão */
   border: none;
   cursor: pointer;
+  transition: transform 0.2s;
 }
 
+.btnCadastro:hover { transform: scale(1.02); background-color: #ff7b00; }
 
+/* --- Ajuste Mobile para Botão --- */
+@media (max-width: 768px) {
+  .btnCadastro {
+    padding: 10px !important;
+    color: white !important; /* Branco no mobile para facilitar leitura */
+  }
+}
+
+/* --- LINK LOGIN --- */
 .linkLogin {
-    margin-top: 20px;
-    text-align: center;
-    color: white;
-    font-family: 'Quicksand', sans-serif;
-    cursor: pointer;
-    font-size: 0.9rem;
+  margin-top: 15px;
+  text-align: center;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 .linkLogin b { color: aqua; font-weight: 700; }
 
+/* --- Ajuste Mobile para Link --- */
+@media (max-width: 768px) {
+  .linkLogin {
+    margin-top: 10px !important;
+  }
+}
 
+/* --- RODAPÉ ANJOS --- */
 .anjosDigitaisCadastro {
-  height: 40px; 
-  width: auto;
+  
+  width: 13srem;
+  height: 6rem;
   opacity: 0.9;
-  margin-bottom: 20px;
-  flex-shrink: 0;
+  transform: translateY(-30.1rem); /* Sobe para não sumir da tela curta */
+}
+
+/* --- Ajuste Mobile para Rodapé --- */
+@media (max-width: 768px) {
+  .anjosDigitaisCadastro {
+    width: 40% !important;
+    height: auto !important;
+    transform: translateY(-23.1rem); /* Sobe para não sumir da tela curta */
+    opacity: 0.7;
+  }
 }

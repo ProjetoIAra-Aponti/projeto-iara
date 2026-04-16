@@ -1,29 +1,19 @@
-//?Essa pasta serve para construir a configuração do firebase
+import admin from 'firebase-admin';
+import { readFile } from 'fs/promises';
+import path from 'path';
 
+// 'path.resolve' garante que pegamos o arquivo na raiz do container (/app)
+const serviceAccountPath = path.resolve('chaveJsonFirebaseFirestore.json');
 
-import admin from 'firebase-admin'; 
-import { createRequire } from 'module';
+const serviceAccount = JSON.parse(
+  await readFile(serviceAccountPath, 'utf8')
+);
 
-const require = createRequire(import.meta.url);
-const contaDeServico = require('../../chaveJsonFirebaseFirestore.json'); //? lendo o json e importando a minha chave de segurança do firestore
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
+const db = admin.firestore();
 
+export { admin, db };
 
-
-
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(contaDeServico)
-  });
-}
-
-
-const db = admin.firestore(); //? inicaliza o firestore atribuindo a variavel db
-
-const auth = admin.auth(); //? inicializa o firebase auth atribuindo a variavel auth
-
-export{ 
-  db, 
-  auth,
-  admin 
-}; //? modulos exportados para utilizarmos em outros locais

@@ -1,69 +1,153 @@
+/* --- MANTÉM SEU CÓDIGO ORIGINAL PARA DESKTOP --- */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Fira+Code:wght@300&family=Poiret+One&family=Quicksand:wght@300..700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
-.conteudoindex{
-  display: grid;
+
+.conteudoindex {
+  display: flex; /* Mudei para flex para facilitar o alinhamento central */
   flex-direction: column;
-  margin: -100px;
-    
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center;
+  min-height: 100vh;
 }
 
-/* Título */
 .tituloindex {
- font-family: "Passion One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+  position: relative;
+  top: 6.5rem; 
+  font-family: "Passion One", sans-serif;
   font-size: 5.9em;
   color: #fff;
-  margin-bottom: -300px;
-  margin-top: 80px;
-  
+  text-align: center;
 }
 
-/* A imagem */
+/* --- Ajuste para Mobile (Dentro da Media Query) --- */
+@media (max-width: 768px) {
+  .tituloindex {
+    /* Aumenta o tamanho da fonte no mobile */
+    font-size: 4.5em; 
+    
+    /* Faz o título subir mais no mobile (valor menor ou negativo) */
+    top: 3.5rem !important; 
+    left: -0% !important;
 
+    
+    /* Garante que o texto não quebre de forma estranha */
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+/* --- Ajuste para Desktop --- */
 .logoiaraindex {  
   position: relative;
-  left: -1px;
-  top: -3%;
-  width: 500px;
-  height: 850px;
+  top: -8rem; 
+  left: 0rem;
+  width: 30rem;
+  height: auto;
 }
 
-
-/* Botão */
+/* --- Ajuste para Mobile (Dentro da Media Query) --- */
+@media (max-width: 768px) {
+  .logoiaraindex {
+    /* Aumentei de 19rem para 24rem */
+    width: 19rem !important; 
+    
+    /* Mantendo ela bem posicionada para cima */
+    top: -6rem; 
+    left: -0%;
+    
+    /* Dica: Adicione isso para garantir que ela não estoure 
+       a largura da tela se o celular for muito pequeno */
+    max-width: 95vw; 
+  }
+}
+/* --- Ajuste para Desktop --- */
 .btnEntrar {
   background-color: #e25300;
   position: relative;
-  top: -420%;
-  left: 28%;
+  /* Ajuste aqui: aumentamos o deslocamento para cima */
+  top: -20rem; 
+  left: 0; /* Removi o left 30% para ele não fugir da tela no mobile */
+  
   border-radius: 35px;
-  width: 225px;
-  height: 47px;
+  width: 12rem;
+  height: 3rem;
   font-size: 17px;
   text-align: center;
-   font-family: "Quicksand", sans-serif;
-  
+  font-family: "Quicksand", sans-serif;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
-.btnEntrar:hover {
-  background-color: #c74d07;
+/* --- Ajuste para Mobile (Dentro da Media Query) --- */
+@media (max-width: 768px) {
+  .btnEntrar {
+    /* No celular, o valor pode ser um pouco menor para não bater na logo */
+    top: -13.5rem; 
+    width: 50% !important; /* Botão mais largo para facilitar o toque */
+    left: -0% !important;
+  }
 }
-
-.anjosDigitais1{
+/* --- Ajuste para Desktop --- */
+.anjosDigitais1 {
   position: relative;
-  bottom: 135px;
-  left: 31%;
-  height: 80px;
-  width: 200px;
-   
-}.btnEntrar:disabled {
-  opacity: 7;
-  color: #ffffff;
-  cursor: not-allowed;
+  /* Ajuste aqui: quanto mais negativo, mais ela sobe */
+  bottom: 16.6rem;
+  left: 0%; /* Mantendo sua posição horizontal original do desktop */
+  height: auto; /* auto para não achatar a imagem */
+  width: 18%;
 }
+
+/* --- Ajuste para Mobile (Dentro da Media Query) --- */
+@media (max-width: 768px) {
+  .anjosDigitais1 {
+    /* No celular, centralizamos e subimos um pouco menos */
+    left: -0% !important;
+    top: -12rem; 
+    width: 60%; /* Um pouco maior no mobile para dar visibilidade */
+    margin: 0 auto;
+  }
+}
+
+/* --- MEDIA QUERIES (A MÁGICA PARA MOBILE E TABLET) --- */
+
+/* Para Celulares (Telas até 768px) */
+@media (max-width: 768px) {
+  .tituloindex {
+    font-size: 4em; /* Título um pouco menor no celular */
+    top: 2rem;
+  }
+
+  .logoiaraindex {
+    width: 18rem; /* Imagem menor para caber na tela do celular */
+    bottom: 0;
+  }
+
+  .btnEntrar {
+    left: 0; /* Centraliza o botão */
+    bottom: 2rem;
+    width: 80%; /* Botão mais largo para facilitar o clique com o dedo */
+  }
+
+  .anjosDigitais1 {
+    width: 50%; /* Ajusta a imagem de rodapé */
+    left: 0;
+    bottom: 0;
+  }
+}
+
+/* Para Tablets (Telas entre 769px e 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logoiaraindex {
+    width: 25rem;
+  }
+  
+  .btnEntrar {
+    left: 0;
+  }
+}
+
+/* --- ANIMAÇÕES --- */
 .indexContainer {
-  opacity: 4;
-  transform: translateY(0);
   transition: opacity 0.9s ease, transform 2s ease;
 }
 

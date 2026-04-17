@@ -11,22 +11,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* No Desktop mantemos o espalhamento */
   justify-content: space-between; 
   padding: 15px 0;
-  overflow: hidden; /* Corta qualquer sobra fantasma */
+  overflow: hidden;
   opacity: 0;
   transition: opacity 0.8s;
-}
-/* --- Ajuste Mobile para o Container (O segredo para a margem sumir) --- */
-@media (max-width: 768px) {
-  .loginContainer {
-    /* Mudamos para flex-start para os elementos não tentarem ocupar o fundo */
-    justify-content: flex-start !important; 
-    /* Garante que o container não cresça além da visão do celular */
-    max-height: 100vh !important; 
-    padding-top: 50px; /* Dá um respiro no topo */
-  }
 }
 
 .loginContainer.fade-in { opacity: 1; }
@@ -35,7 +24,7 @@
 .titulosLogin {
   text-align: center;
   margin-top: 20px;
-  z-index: 10;
+  z-index: 100;
 }
 
 .titleolaLogin, .titlebemvindoLogin, .titleiaraLogin {
@@ -50,14 +39,6 @@
 .titlebemvindoLogin { font-size: 2rem; font-weight: 300; }
 .titleiaraLogin { font-size: 2rem; font-weight: 700; }
 
-/* --- Ajuste Mobile para Títulos --- */
-@media (max-width: 768px) {
-  .titleolaLogin, .titlebemvindoLogin, .titleiaraLogin { 
-    font-size: 1.5rem !important; 
-    transform: translateY(-3.5rem); 
-  }
-}
-
 /* --- LOGO IARA --- */
 .logoiara {
   width: 25%;
@@ -67,15 +48,6 @@
   filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.3));
   z-index: 5;
   margin: 10px 0;
-}
-
-/* --- Ajuste Mobile para Logo --- */
-@media (max-width: 768px) {
-  .logoiara {
-    width: 85% !important;
-    max-width: 280px;
-    transform: translateY(-12rem); 
-  }
 }
 
 /* --- FORMULÁRIO E INPUTS --- */
@@ -103,35 +75,20 @@
   background-color: rgb(253, 251, 251) !important;
   color: black !important;
 }
-/* Isso remove o fundo roxo/azul do preenchimento automático */
+
 .inputLogin:-webkit-autofill,
 .inputLogin:-webkit-autofill:hover, 
 .inputLogin:-webkit-autofill:focus,
 .inputPassword:-webkit-autofill,
 .inputPassword:-webkit-autofill:hover, 
 .inputPassword:-webkit-autofill:focus {
-  /* A mágica: cria um preenchimento de sombra interna branca */
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
   -webkit-text-fill-color: black !important;
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Garante que o fundo continue branco ao clicar ou digitar */
 .inputLogin:focus, .inputPassword:focus {
   background-color: white !important;
-}
-/* --- Ajuste Mobile para Formulário --- */
-@media (max-width: 768px) {
-  .formLogin {
-    width: 90% !important;
-    max-width: 320px;
-    transform: translateY(-20rem);
-  }
-  .inputLogin, .inputPassword {
-    padding: 12px !important;
-    font-size: 0.95rem !important;
-    margin-bottom: 8px !important;
-  }
 }
 
 /* --- BOTÃO --- */
@@ -155,15 +112,6 @@
   transform: scale(1.02);
 }
 
-/* --- Ajuste Mobile para Botão --- */
-@media (max-width: 768px) {
-  .btnLogin {
-    padding: 12px !important;
-    color: white !important; /* No mobile você queria branco */
-    margin-top: 5px;
-  }
-}
-
 /* --- LINK CADASTRO --- */
 .linkCadastro {
   color: white;
@@ -174,33 +122,183 @@
 
 .spanCadastro { color: aqua; font-weight: bold; cursor: pointer; }
 
-/* --- Ajuste Mobile para Link --- */
-@media (max-width: 768px) {
-  .linkCadastro {
-    transform: translateY(-0.9rem);
-    font-size: 0.9rem !important;
-  }
-}
-
 /* --- RODAPÉ ANJOS --- */
 .anjosDigitais {
-  
   width: 11%;
   height: auto;
   opacity: 0.8;
   margin-top: 12px;
-  transform: translateY(-30rem);
+  transform: translateY(-27.9rem);
 }
 
-/* --- Ajuste Mobile para Rodapé --- */
+/* ============================================================
+   MEDIA QUERY — NOTEBOOKS MÉDIOS (1367px até 1600px)
+   ============================================================ */
+@media (min-width: 1367px) and (max-width: 1600px) {
+
+  .titleolaLogin { font-size: 2.2rem; }
+  .titlebemvindoLogin { font-size: 1.8rem; }
+  .titleiaraLogin { font-size: 1.5rem; }
+
+  .logoiara {
+    width: 22%; /* logo levemente menor */
+    transform: translateY(-13em);
+  }
+
+  .formLogin {
+    transform: translateY(-26rem); /* form sobe menos */
+  }
+
+  .anjosDigitais {
+    width: 10%;
+    transform: translateY(-25rem); /* anjos sobe menos */
+  }
+}
+
+/* ============================================================
+   MEDIA QUERY — NOTEBOOKS PEQUENOS (1025px até 1366px)
+   Cobre: 1280x800, 1366x768, 1280x720
+   ============================================================ */
+@media (min-width: 1025px) and (max-width: 1366px) {
+
+  .titleolaLogin { font-size: 2rem; } /* título menor para caber */
+  .titlebemvindoLogin { font-size: 1.6rem; }
+  .titleiaraLogin { font-size: 1.6rem; }
+
+  .logoiara {
+    width: 20%; /* logo menor */
+    transform: translateY(-11em);
+  }
+
+  .formLogin {
+    transform: translateY(-22rem); /* form ajustado para tela menor */
+    max-width: 340px;
+  }
+
+  .btnLogin {
+    padding: 12px; /* botão levemente mais compacto */
+    font-size: 1rem;
+  }
+
+  .anjosDigitais {
+    width: 10%;
+    transform: translateY(-21rem); /* anjos acompanha o form */
+  }
+}
+
+/* ============================================================
+   MEDIA QUERY — NOTEBOOKS CRÍTICOS COM ALTURA BAIXA (max-height: 720px)
+   Cobre: 1280x720 e 1366x768
+   ============================================================ */
+@media (min-width: 1025px) and (max-width: 1366px) and (max-height: 720px) {
+
+  .titleolaLogin { font-size: 1.9rem; transform: translateY(-1.5rem); } /* compacta mais os títulos */
+  .titlebemvindoLogin { font-size: 1.4rem; transform: translateY(-1.5rem); }
+  .titleiaraLogin { font-size: 1.4rem; transform: translateY(-1.5rem); }
+
+  .logoiara {
+    width: 21%; /* logo bem menor na altura crítica */
+    height: auto;
+    transform: translateY(-10em);
+  }
+
+  .formLogin {
+    transform: translateY(-18rem); /* form mais próximo do centro */
+    max-width: 320px;
+  }
+
+  .inputLogin, .inputPassword {
+    padding: 11px; /* inputs mais compactos */
+    margin: -3px;
+    font-size: 0.9rem;
+
+    margin-bottom: 8px;
+  }
+
+  .btnLogin {
+    padding: 10px;
+    margin: 3px;
+    font-size: 0.95rem;
+  }
+  .linkCadastro {
+    transform: translateY(-0.9rem);
+    font-size: 0.9rem !important;
+  }
+
+  .anjosDigitais {
+    width: 9.5%;
+    height: auto;
+    transform: translateY(-19.5rem); /* anjos acompanha tudo */
+  }
+}
+
+/* ============================================================
+   MEDIA QUERY — TABLET (769px até 1024px) — NÃO ALTERADO
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logoiara {
+    width: 35%;
+  }
+
+  .formLogin {
+    transform: translateY(-24rem);
+  }
+
+  .anjosDigitais {
+    width: 14%;
+    transform: translateY(-23rem);
+  }
+}
+
+/* ============================================================
+   MEDIA QUERY — MOBILE (até 768px) — NÃO ALTERADO
+   ============================================================ */
 @media (max-width: 768px) {
+  .loginContainer {
+    justify-content: flex-start !important; 
+    max-height: 100vh !important; 
+    padding-top: 50px;
+  }
+
+  .titleolaLogin, .titlebemvindoLogin, .titleiaraLogin { 
+    font-size: 1.5rem !important; 
+    transform: translateY(-3.5rem); 
+  }
+
+  .logoiara {
+    width: 85% !important;
+    max-width: 280px;
+    transform: translateY(-12rem); 
+  }
+
+  .formLogin {
+    width: 90% !important;
+    max-width: 320px;
+    transform: translateY(-20rem);
+  }
+
+  .inputLogin, .inputPassword {
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .btnLogin {
+    padding: 12px !important;
+    color: white !important;
+    margin-top: 5px;
+  }
+
+  .linkCadastro {
+    transform: translateY(-0.9rem);
+    font-size: 0.9rem !important;
+  }
+
   .anjosDigitais {
     width: 45% !important;
     height: auto !important;
-    /* Reduzi um pouco o translateY para ele subir, mas não deixar sobra embaixo */
     transform: translateY(-22rem); 
     opacity: 0.7;
-    /* Remove qualquer margem que force o scroll */
     margin-bottom: 0 !important; 
   }
 }

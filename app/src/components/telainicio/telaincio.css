@@ -3,70 +3,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
 
 .conteudoindex {
-  display: flex; /* Mudei para flex para facilitar o alinhamento central */
+  display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza horizontalmente */
+  align-items: center;
   justify-content: center;
   min-height: 100vh;
 }
 
 .tituloindex {
   position: relative;
-  top: 6.5rem; 
+  top: -1rem; 
   font-family: "Passion One", sans-serif;
   font-size: 5.9em;
   color: #fff;
   text-align: center;
 }
 
-/* --- Ajuste para Mobile (Dentro da Media Query) --- */
-@media (max-width: 768px) {
-  .tituloindex {
-    /* Aumenta o tamanho da fonte no mobile */
-    font-size: 4.5em; 
-    
-    /* Faz o título subir mais no mobile (valor menor ou negativo) */
-    top: 3.5rem !important; 
-    left: -0% !important;
-
-    
-    /* Garante que o texto não quebre de forma estranha */
-    width: 100%;
-    padding: 0 10px;
-  }
-}
 /* --- Ajuste para Desktop --- */
 .logoiaraindex {  
   position: relative;
-  top: -8rem; 
+  top: -12rem; 
   left: 0rem;
   width: 30rem;
   height: auto;
 }
 
-/* --- Ajuste para Mobile (Dentro da Media Query) --- */
-@media (max-width: 768px) {
-  .logoiaraindex {
-    /* Aumentei de 19rem para 24rem */
-    width: 19rem !important; 
-    
-    /* Mantendo ela bem posicionada para cima */
-    top: -6rem; 
-    left: -0%;
-    
-    /* Dica: Adicione isso para garantir que ela não estoure 
-       a largura da tela se o celular for muito pequeno */
-    max-width: 95vw; 
-  }
-}
 /* --- Ajuste para Desktop --- */
 .btnEntrar {
   background-color: #e25300;
   position: relative;
-  /* Ajuste aqui: aumentamos o deslocamento para cima */
-  top: -20rem; 
-  left: 0; /* Removi o left 30% para ele não fugir da tela no mobile */
-  
+  top: -25rem; 
+  left: 0;
   border-radius: 35px;
   width: 12rem;
   height: 3rem;
@@ -78,64 +45,134 @@
   cursor: pointer;
 }
 
-/* --- Ajuste para Mobile (Dentro da Media Query) --- */
-@media (max-width: 768px) {
-  .btnEntrar {
-    /* No celular, o valor pode ser um pouco menor para não bater na logo */
-    top: -13.5rem; 
-    width: 50% !important; /* Botão mais largo para facilitar o toque */
-    left: -0% !important;
-  }
-}
 /* --- Ajuste para Desktop --- */
 .anjosDigitais1 {
   position: relative;
-  /* Ajuste aqui: quanto mais negativo, mais ela sobe */
-  bottom: 16.6rem;
-  left: 0%; /* Mantendo sua posição horizontal original do desktop */
-  height: auto; /* auto para não achatar a imagem */
+  bottom: 13.9rem;
+  left: 0%;
+  height: auto;
   width: 18%;
 }
 
-/* --- Ajuste para Mobile (Dentro da Media Query) --- */
-@media (max-width: 768px) {
+/* ============================================================
+   MEDIA QUERY — NOTEBOOKS MÉDIOS (1367px até 1600px)
+   ============================================================ */
+@media (min-width: 1367px) and (max-width: 1600px) {
+
+  .tituloindex {
+    font-size: 5em;
+    top: -0.8rem;
+  }
+
+  .logoiaraindex {
+    width: 26rem;
+    top: -10.5rem;
+  }
+
+  .btnEntrar {
+    top: -22rem;
+    width: 12rem;
+  }
+
   .anjosDigitais1 {
-    /* No celular, centralizamos e subimos um pouco menos */
+    width: 17%;
+    bottom: 11rem; /* descida leve em relação ao valor anterior (era 15rem) */
+  }
+}
+
+/* ============================================================
+   MEDIA QUERY — NOTEBOOKS PEQUENOS (1025px até 1366px)
+   Cobre: 1280x800, 1366x768, 1280x720
+   ============================================================ */
+@media (min-width: 1025px) and (max-width: 1366px) {
+
+  .tituloindex {
+    font-size: 4.2em;
+    top: -0.5rem;
+  }
+
+  .logoiaraindex {
+    width: 22rem;
+    top: -9rem;
+  }
+
+  .btnEntrar {
+    top: -19rem;
+    width: 12rem;
+  }
+
+  .anjosDigitais1 {
+    width: 19%;
+    bottom: 9rem; /* descida leve em relação ao valor anterior (era 13rem) */
+  }
+}
+
+/* ============================================================
+   MEDIA QUERY — NOTEBOOKS CRÍTICOS COM ALTURA BAIXA (max-height: 720px)
+   Cobre: 1280x720 e 1366x768
+   ============================================================ */
+@media (min-width: 1025px) and (max-width: 1366px) and (max-height: 720px) {
+
+  .tituloindex {
+    font-size: 3.8em;
+    top: 0rem;
+  }
+
+  .logoiaraindex {
+    width: 18rem;
+    top: -7rem;
+  }
+
+  .btnEntrar {
+    top: -15rem;
+    width: 11rem;
+    height: 2.7rem;
+    font-size: 15px;
+  }
+
+  .anjosDigitais1 {
+    width: 11%;
+    height: auto;
+    bottom: 7.6rem; /* descida leve em relação ao valor anterior (era 11rem) */
+  }
+}
+
+/* ============================================================
+   MEDIA QUERY — MOBILE (até 768px) — NÃO ALTERADO
+   ============================================================ */
+@media (max-width: 768px) {
+  .tituloindex {
+    font-size: 4.5em; 
+    top: 3.5rem !important; 
+    left: -0% !important;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .logoiaraindex {
+    width: 19rem !important; 
+    top: -6rem; 
+    left: -0%;
+    max-width: 95vw; 
+  }
+
+  .btnEntrar {
+    top: -13.5rem; 
+    width: 50% !important;
+    left: -0% !important;
+  }
+
+  .anjosDigitais1 {
     left: -0% !important;
     top: -12rem; 
-    width: 60%; /* Um pouco maior no mobile para dar visibilidade */
+    width: 60%;
     margin: 0 auto;
   }
 }
 
-/* --- MEDIA QUERIES (A MÁGICA PARA MOBILE E TABLET) --- */
-
-/* Para Celulares (Telas até 768px) */
-@media (max-width: 768px) {
-  .tituloindex {
-    font-size: 4em; /* Título um pouco menor no celular */
-    top: 2rem;
-  }
-
-  .logoiaraindex {
-    width: 18rem; /* Imagem menor para caber na tela do celular */
-    bottom: 0;
-  }
-
-  .btnEntrar {
-    left: 0; /* Centraliza o botão */
-    bottom: 2rem;
-    width: 80%; /* Botão mais largo para facilitar o clique com o dedo */
-  }
-
-  .anjosDigitais1 {
-    width: 50%; /* Ajusta a imagem de rodapé */
-    left: 0;
-    bottom: 0;
-  }
-}
-
-/* Para Tablets (Telas entre 769px e 1024px) */
+/* ============================================================
+   MEDIA QUERY — TABLET (769px até 1024px) — NÃO ALTERADO
+   ============================================================ */
 @media (min-width: 769px) and (max-width: 1024px) {
   .logoiaraindex {
     width: 25rem;
